@@ -12,11 +12,15 @@ var default_search = "duck";
 
 document.addEventListener("keydown", function(e) {
     // Help came from https://stackoverflow.com/a/14562869/6897392
-     if (e.keyCode == 191 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+     if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
        text = getSelectionText();
        if(text != ""){
+          e.stopImmediatePropagation();
+          e.preventDefault();
           console.log(text);
-          openInNewTab(searches[default_search]+text);
+          setTimeout(() => {                                // ***
+            openInNewTab(searches[default_search]+text);
+          }, 50);
        }
      }
    }, false);
