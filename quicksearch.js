@@ -18,7 +18,9 @@ document.addEventListener("keydown", function(e) {
           e.stopImmediatePropagation();
           e.preventDefault();
           console.log(text);
-          openInNewTab(searches[default_search]+text);
+          setTimeout(() => {                                // ***
+            openInNewTab(searches[default_search]+text);
+          }, 50);
        }
      }
    }, false);
