@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "QuickSearch",
+  "version": "1.1",
+
+  "description": "Allows quick searching of highlighted text on a page with ctrl/cmd + /",
+
+  "applications": {
+    "gecko": {
+      "id": "dev@willmccall.com"
+    }
+  },
+
+  "icons": {
+    "48": "icons/mag.svg",
+    "96": "icons/mag.svg"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file://*/*"
+      ],
+      "js": [
+        "quicksearch.js"
+      ]
+    }
+  ]
+}
