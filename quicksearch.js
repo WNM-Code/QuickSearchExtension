@@ -61,6 +61,7 @@ function getSearch(){
 }
 
 function doSearch(){
+  // Help came from https://stackoverflow.com/a/53144549/6897392
     setTimeout(() => {
       console.log(default_search + text);
       openInNewTab(searches[default_search]+text);
