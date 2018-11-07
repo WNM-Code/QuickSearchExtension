@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "QuickSearch",
+  "name": "QuickSearchKeyCombo",
   "version": "1.1",
 
   "description": "Allows quick searching of highlighted text on a page with ctrl/cmd + /",
@@ -16,6 +16,14 @@
     "96": "icons/mag.svg"
   },
 
+  "permissions": ["storage"],
+
+  "browser_action": {
+    "default_icon": "icons/mag.svg",
+    "default_title": "QuickSearchKeyCombo",
+    "default_popup": "popup/settings.html"
+  },
+
   "content_scripts": [
     {
       "matches": [
@@ -24,6 +32,7 @@
         "file://*/*"
       ],
       "js": [
+        "jquery-3.3.1.min.js",
         "quicksearch.js"
       ]
     }

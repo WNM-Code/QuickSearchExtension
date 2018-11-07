@@ -11,18 +11,16 @@ var alteration = {"&": "%26",
 var default_search = "duck";
 
 document.addEventListener("keydown", function(e) {
-    // Help came from https://stackoverflow.com/a/14562869/6897392
-     if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
-       text = getSelectionText();
-       if(text != ""){
-          e.stopImmediatePropagation();
-          e.preventDefault();
-          console.log(text);
-          setTimeout(() => {                                // ***
-            openInNewTab(searches[default_search]+text);
-          }, 50);
-       }
-     }
+  // Help came from https://stackoverflow.com/a/14562869/6897392
+   if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+     text = getSelectionText();
+     if(text != ""){
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        getSearch();
+        doSearch();
+      }
+    }
    }, false);
 
 function getSelectionText() {
@@ -46,4 +44,25 @@ function openInNewTab(url) {
   var win = window.open(url, '_blank');
   win.focus();
   return false;
+}
+
+function getSearch(){
+
+  function setCurrentSearch(result) {
+    default_search = result.search_type || "google";
+  }
+
+  function onGetError(error) {
+    console.log(`Error: ${error}`);
+  }
+
+  var searchPromise = browser.storage.sync.get("search_type");
+  searchPromise.then(setCurrentSearch, onGetError);
+}
+
+function doSearch(){
+    setTimeout(() => {
+      console.log(default_search + text);
+      openInNewTab(searches[default_search]+text);
+    }, 50);
 }
